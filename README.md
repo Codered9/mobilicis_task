@@ -10,6 +10,9 @@ You must fetch the following data using the API and display it on the frontend i
 4. Users which have a car of brand “BMW”, “Mercedes” or “Audi” and whose email does not include any digit.
 5. Show the data of top 10 cities which have the highest number of users and their average income.
 
+### Deployment URL
+https://mobilicis-task.vercel.app/
+
 ### Implementation
 
 #### Data Uploading to MongoDB
