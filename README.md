@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Assignment for Internship position at “Mobilicis India Private Limited” 
 
-## Getting Started
+### Given task
+Create a “Node.js” Application using Express Framework and MongoDB Database and Connect it to your Frontend Application (Which can be developed using either React or Nextjs)
 
-First, run the development server:
+You must fetch the following data using the API and display it on the frontend in a table format:
+1. Users which have income lower than $5 USD and have a car of brand “BMW” or “Mercedes”.
+2. Male Users which have phone price greater than 10,000.
+3. Users whose last name starts with “M” and has a quote character length greater than 15 and email includes his/her last name.
+4. Users which have a car of brand “BMW”, “Mercedes” or “Audi” and whose email does not include any digit.
+5. Show the data of top 10 cities which have the highest number of users and their average income.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Implementation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Data Uploading to MongoDB
+I used Mongo Compass's feature of import json file to upload the data into the DB.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#### APIs
+I built 5 api endpoints for 5 different filters given to me. Named: 
+- '/api/queryOne'
+- '/api/queryTwo'
+- '/api/queryThree'
+- '/api/queryFour'
+- '/api/queryFive'
+ All of these endpoints are creating a MongoDB query according to the given criterias and then executing it on the Schema created with help of the json file given.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ The query returns an Array of json objects containing the requested data.
+ MongoDB itself filters out the data on the basis of the given query.
+ The returned data is sent to the client side for displaying.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+ #### Frontend
+ Frontend is simply Five Button containing to hit the five different api endpoints.
+ The client side sends a GET request to the respective endpoints and recieves a json object array.
+ This response is then stored into a state and the table is rendered accordingly.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ ### Important Files and Functions
+ - '/src/model/sales.ts'
+ This file contains the schema of the MongoDB.
 
-## Learn More
+ - '/src/lib/dbConnect.js'
+ It contains function to connect to the MongoDB server and creates a global connection for the application. It prevents creation of multiple instances of the connection to the MongoDB Server to prevent load on the server and issues with the NextJS.
 
-To learn more about Next.js, take a look at the following resources:
+- '/src/api'
+ Contains all the api end points of the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- '/src/pages/index.js'
+Contains the frontend code of the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Technologies Used in the project
+- NextJS: For Frontend and Backend of the application
+- TailwindCSS: For CSS Styling
+- MongoDB: For hosting the database
